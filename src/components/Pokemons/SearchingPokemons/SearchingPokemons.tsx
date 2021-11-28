@@ -1,9 +1,10 @@
 import  React, {useMemo } from "react";
 import { BehaviorSubject, combineLatestWith, map } from "rxjs";
 import {useObservableState} from 'observable-hooks';
-import { pokemon$, selected$ } from "../store";
+import { pokemon$, selected$ } from "../../../store";
+import { SearchingPokemonsContainer } from "./styled-SearchingPokemons";
 
-export const Search = () => {
+export const SearchingPokemons = () => {
     const search$ = useMemo(() => new BehaviorSubject(""), [])
     const [filteredPokemon] = useObservableState(() =>
     pokemon$.pipe(
@@ -14,12 +15,15 @@ export const Search = () => {
   
     return (
       <div>
-        <input
+        <div>
+         <input
           type="text"
           value={search$.value}
           onChange={(e) => search$.next(e.target.value)}
-        />
-        <div>
+        /> 
+        </div>
+        
+        <SearchingPokemonsContainer>
           {filteredPokemon.map((p) => (
             <div key={p.name}>
               <input
@@ -37,7 +41,7 @@ export const Search = () => {
               <strong>{p.name}</strong> - {p.power}
             </div>
           ))}
-        </div>
+        </SearchingPokemonsContainer>
       </div>
     );
   };

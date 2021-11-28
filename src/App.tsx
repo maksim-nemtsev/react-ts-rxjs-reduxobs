@@ -1,19 +1,13 @@
-import React from 'react';
-import './App.css';
-import { Search } from './components/Search';
-import { Deck } from './components/Deck';
+import React from "react";
+import "./App.css";
+import Navbar from "./components/NavBar/NavBar";
+import { MyRoutes } from "./routes";
 
 function App() {
-
   return (
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "1fr 1fr",
-      }}
-    >
-      <Search />
-      <Deck/>
+    <div className="App">
+      <Navbar />
+      <MyRoutes />
     </div>
   );
 }
